@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ck04in5gxo810"
-path="res://.godot/imported/GardenTileMap.png-98976a2d8d5e92736904ea47dd9e58f3.ctex"
+path="res://.godot/imported/GardenTileMap.png-4156ca7db6bcae261a81951e77a729b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/GardenTileMap.png"
-dest_files=["res://.godot/imported/GardenTileMap.png-98976a2d8d5e92736904ea47dd9e58f3.ctex"]
+source_file="res://tilesets/GardenTileMap.png"
+dest_files=["res://.godot/imported/GardenTileMap.png-4156ca7db6bcae261a81951e77a729b9.ctex"]
 
 [params]
 

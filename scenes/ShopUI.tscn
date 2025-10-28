@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3m3tlygcefcj"]
+
+[ext_resource type="Script" uid="uid://dab3pnb660g1c" path="res://scenes/shop_ui.gd" id="1_owitj"]
+
+[node name="ShopUi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_owitj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

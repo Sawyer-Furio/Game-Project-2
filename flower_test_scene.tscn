@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b10di4jthcfke"]
+
+[ext_resource type="Script" uid="uid://cbsveeg6yqhqq" path="res://flower_test_scene.gd" id="1_hvor5"]
+[ext_resource type="PackedScene" uid="uid://8oxtceiwqnw6" path="res://scenes/FlowerInstance.tscn" id="1_tfu1i"]
+
+[node name="TestGarden" type="Node2D"]
+script = ExtResource("1_hvor5")
+
+[node name="FlowerInstance" parent="." instance=ExtResource("1_tfu1i")]

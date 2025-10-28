@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://cqn2n6yv5awge"]
+
+[ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_iuvi8"]
+
+[resource]
+script = ExtResource("1_iuvi8")
+name = "Weed Flower"
+metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://bofx6jbg87b21"]
+
+[ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_f4ewv"]
+
+[resource]
+script = ExtResource("1_f4ewv")
+name = "Lightning Bug Flower"
+metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

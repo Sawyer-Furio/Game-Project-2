@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://bhjiyowufktqm"]
+
+[ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_phok5"]
+
+[resource]
+script = ExtResource("1_phok5")
+id = 4
+name = "Hydrangea Flower"
+sell_value = 8
+color = Color(1, 0.23137255, 1, 1)
+metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

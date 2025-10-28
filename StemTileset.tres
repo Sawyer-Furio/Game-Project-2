@@ -1,0 +1,69 @@
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://dt34a3wyra5it"]
+
+[ext_resource type="Texture2D" uid="uid://ck04in5gxo810" path="res://tilesets/GardenTileMap.png" id="1_fq8kp"]
+[ext_resource type="Texture2D" uid="uid://colmiusfr0qje" path="res://tilesets/FlowerSheet64.png" id="1_mqaj4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ajvnd"]
+resource_name = "Mushroom Base"
+texture = ExtResource("1_mqaj4")
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+7:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+7:7/0 = 0
+6:7/0 = 0
+5:7/0 = 0
+4:7/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ex7w4"]
+resource_name = "Pot 1"
+texture = ExtResource("1_fq8kp")
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2fmbc"]
+resource_name = "Pot 2"
+texture = ExtResource("1_fq8kp")
+2:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vhmac"]
+resource_name = "Pot 3"
+texture = ExtResource("1_fq8kp")
+3:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lj25j"]
+resource_name = "Pot 4"
+texture = ExtResource("1_fq8kp")
+0:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3cmki"]
+resource_name = "Seed 1"
+texture = ExtResource("1_fq8kp")
+1:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0dmev"]
+resource_name = "Seed 2"
+texture = ExtResource("1_fq8kp")
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o1hxa"]
+resource_name = "Seed 3"
+texture = ExtResource("1_fq8kp")
+3:2/0 = 0
+
+[resource]
+sources/31 = SubResource("TileSetAtlasSource_ajvnd")
+sources/32 = SubResource("TileSetAtlasSource_ex7w4")
+sources/33 = SubResource("TileSetAtlasSource_2fmbc")
+sources/34 = SubResource("TileSetAtlasSource_vhmac")
+sources/35 = SubResource("TileSetAtlasSource_lj25j")
+sources/36 = SubResource("TileSetAtlasSource_3cmki")
+sources/37 = SubResource("TileSetAtlasSource_0dmev")
+sources/38 = SubResource("TileSetAtlasSource_o1hxa")

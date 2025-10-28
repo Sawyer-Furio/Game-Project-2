@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://dykpc45ov46ju"]
+
+[ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_ksx35"]
+
+[resource]
+script = ExtResource("1_ksx35")
+id = 6
+name = "Mushroom"
+sell_value = 9
+grows_at_night = true
+affects_neighbors = true
+color = Color(1, 0.38431373, 0.2901961, 1)
+special_effect = "shade_neighbors"
+metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://dviylsduae3pt"]
+
+[ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_fnvb1"]
+
+[resource]
+script = ExtResource("1_fnvb1")
+id = 2
+name = "Night Flower"
+grows_at_night = true
+color = Color(0.19215687, 0.14509805, 1, 1)
+metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

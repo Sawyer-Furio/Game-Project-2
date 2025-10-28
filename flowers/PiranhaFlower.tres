@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://bh73uq50i1eau"]
+
+[ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_pu1m2"]
+
+[resource]
+script = ExtResource("1_pu1m2")
+name = "Piranha Flower"
+sell_value = 9
+affects_neighbors = true
+color = Color(0.061849646, 0.1496383, 0.09246067, 1)
+special_effect = "eat_neighbors"
+metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

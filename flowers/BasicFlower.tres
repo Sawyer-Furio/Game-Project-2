@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Flower" load_steps=4 format=3 uid="uid://bgr53ghld1jhr"]
+
+[ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_4avm7"]
+[ext_resource type="TileSet" uid="uid://euw7bf7xidkm" path="res://BloomTileset.tres" id="1_bhv0e"]
+[ext_resource type="TileSet" uid="uid://dt34a3wyra5it" path="res://StemTileset.tres" id="3_5dqwc"]
+
+[resource]
+script = ExtResource("1_4avm7")
+id = 1
+name = "Basic Flower"
+stem_tileset = ExtResource("3_5dqwc")
+stem_tile_ids = Array[int]([36, 37, 38])
+bloom_tileset = ExtResource("1_bhv0e")
+bloom_tile_id = 11
+metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

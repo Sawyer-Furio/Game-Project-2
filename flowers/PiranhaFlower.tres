@@ -1,6 +1,10 @@
-[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://bh73uq50i1eau"]
+[gd_resource type="Resource" script_class="Flower" load_steps=6 format=3 uid="uid://bh73uq50i1eau"]
 
+[ext_resource type="Texture2D" uid="uid://dsuawlx3hty6n" path="res://sprites/PiranhaFlower.png" id="1_gna4j"]
 [ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_pu1m2"]
+[ext_resource type="Texture2D" uid="uid://dceshlpf8mfr4" path="res://sprites/Stem1.png" id="3_m7wqu"]
+[ext_resource type="Texture2D" uid="uid://hsu7oq2fw5wg" path="res://sprites/Stem2.png" id="4_i34s6"]
+[ext_resource type="Texture2D" uid="uid://f1ij4npstnwq" path="res://sprites/Stem3.png" id="5_2hmr4"]
 
 [resource]
 script = ExtResource("1_pu1m2")
@@ -9,4 +13,6 @@ sell_value = 9
 affects_neighbors = true
 color = Color(0.061849646, 0.1496383, 0.09246067, 1)
 special_effect = "eat_neighbors"
+stem_textures = Array[Texture2D]([ExtResource("3_m7wqu"), ExtResource("4_i34s6"), ExtResource("5_2hmr4")])
+bloom_texture = ExtResource("1_gna4j")
 metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

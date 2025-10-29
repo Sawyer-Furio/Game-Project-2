@@ -1,8 +1,16 @@
-[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://cqn2n6yv5awge"]
+[gd_resource type="Resource" script_class="Flower" load_steps=6 format=3 uid="uid://cqn2n6yv5awge"]
 
 [ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_iuvi8"]
+[ext_resource type="Texture2D" uid="uid://bhdqupsoao3s3" path="res://sprites/WeedPlant.png" id="1_xuopj"]
+[ext_resource type="Texture2D" uid="uid://dceshlpf8mfr4" path="res://sprites/Stem1.png" id="3_dlmwe"]
+[ext_resource type="Texture2D" uid="uid://hsu7oq2fw5wg" path="res://sprites/Stem2.png" id="4_qkntl"]
+[ext_resource type="Texture2D" uid="uid://f1ij4npstnwq" path="res://sprites/Stem3.png" id="5_ro3cm"]
 
 [resource]
 script = ExtResource("1_iuvi8")
 name = "Weed Flower"
+affects_neighbors = true
+special_effect = "spread_weeds"
+stem_textures = Array[Texture2D]([ExtResource("3_dlmwe"), ExtResource("4_qkntl"), ExtResource("5_ro3cm")])
+bloom_texture = ExtResource("1_xuopj")
 metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

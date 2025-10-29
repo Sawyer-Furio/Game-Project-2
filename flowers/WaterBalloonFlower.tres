@@ -1,8 +1,16 @@
-[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://cvjj187y3q6ru"]
+[gd_resource type="Resource" script_class="Flower" load_steps=6 format=3 uid="uid://cvjj187y3q6ru"]
 
 [ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_2kcdv"]
+[ext_resource type="Texture2D" uid="uid://blucthddo370l" path="res://sprites/WaterFlower1.png" id="1_42ykj"]
+[ext_resource type="Texture2D" uid="uid://dceshlpf8mfr4" path="res://sprites/Stem1.png" id="3_ikr7d"]
+[ext_resource type="Texture2D" uid="uid://hsu7oq2fw5wg" path="res://sprites/Stem2.png" id="4_ph6m7"]
+[ext_resource type="Texture2D" uid="uid://f1ij4npstnwq" path="res://sprites/Stem3.png" id="5_101sj"]
 
 [resource]
 script = ExtResource("1_2kcdv")
 name = "Water Balloon Flower"
+affects_neighbors = true
+special_effect = "water_neighbors"
+stem_textures = Array[Texture2D]([ExtResource("3_ikr7d"), ExtResource("4_ph6m7"), ExtResource("5_101sj")])
+bloom_texture = ExtResource("1_42ykj")
 metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

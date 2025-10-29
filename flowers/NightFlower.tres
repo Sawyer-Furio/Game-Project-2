@@ -1,6 +1,10 @@
-[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://dviylsduae3pt"]
+[gd_resource type="Resource" script_class="Flower" load_steps=6 format=3 uid="uid://dviylsduae3pt"]
 
+[ext_resource type="Texture2D" uid="uid://ct05d71oml8ou" path="res://sprites/NightFlower.png" id="1_bepe8"]
 [ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_fnvb1"]
+[ext_resource type="Texture2D" uid="uid://dceshlpf8mfr4" path="res://sprites/Stem1.png" id="3_qiox2"]
+[ext_resource type="Texture2D" uid="uid://hsu7oq2fw5wg" path="res://sprites/Stem2.png" id="4_komf5"]
+[ext_resource type="Texture2D" uid="uid://f1ij4npstnwq" path="res://sprites/Stem3.png" id="5_3wvb8"]
 
 [resource]
 script = ExtResource("1_fnvb1")
@@ -8,4 +12,6 @@ id = 2
 name = "Night Flower"
 grows_at_night = true
 color = Color(0.19215687, 0.14509805, 1, 1)
+stem_textures = Array[Texture2D]([ExtResource("3_qiox2"), ExtResource("4_komf5"), ExtResource("5_3wvb8")])
+bloom_texture = ExtResource("1_bepe8")
 metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

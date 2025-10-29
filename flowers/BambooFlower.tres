@@ -1,6 +1,10 @@
-[gd_resource type="Resource" script_class="Flower" load_steps=2 format=3 uid="uid://k3nxyn74wda0"]
+[gd_resource type="Resource" script_class="Flower" load_steps=6 format=3 uid="uid://k3nxyn74wda0"]
 
 [ext_resource type="Script" uid="uid://cvdpyosk3xqd8" path="res://scripts/Flower.gd" id="1_bg6us"]
+[ext_resource type="Texture2D" uid="uid://bnrdg3x7tfrhu" path="res://sprites/CactusPlant.png" id="1_w4amj"]
+[ext_resource type="Texture2D" uid="uid://dceshlpf8mfr4" path="res://sprites/Stem1.png" id="3_180ys"]
+[ext_resource type="Texture2D" uid="uid://hsu7oq2fw5wg" path="res://sprites/Stem2.png" id="4_tavwe"]
+[ext_resource type="Texture2D" uid="uid://f1ij4npstnwq" path="res://sprites/Stem3.png" id="5_wey5c"]
 
 [resource]
 script = ExtResource("1_bg6us")
@@ -8,6 +12,6 @@ id = 3
 name = "Bamboo Flower"
 grow_speed = 5.0
 color = Color(0.23137255, 1, 0.19215687, 1)
-stem_tile_id = 5
-bloom_tile_id = 2
+stem_textures = Array[Texture2D]([ExtResource("3_180ys"), ExtResource("4_tavwe"), ExtResource("5_wey5c")])
+bloom_texture = ExtResource("1_w4amj")
 metadata/_custom_type_script = "uid://cvdpyosk3xqd8"

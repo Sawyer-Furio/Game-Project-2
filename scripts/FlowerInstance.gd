@@ -1,5 +1,5 @@
 extends Node2D
-class_name FlowerInstanceScript
+
 
 @export var flower_data: Resource
 @onready var stem_layer := $StemLayer    # TileMapLayer for stem

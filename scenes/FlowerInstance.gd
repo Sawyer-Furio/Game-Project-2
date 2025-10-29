@@ -1,13 +1,13 @@
 extends Node2D
-class_name FlowerInstance
+class_name FlowerInstanceScript
 
 @export var flower_data: Flower
-@onready var stem_layer := $StemLayer    # TileMapLayer for stem
-@onready var bloom_layer := $BloomLayer  # TileMapLayer for bloom
+@onready var stem_sprite := $StemSprite
+@onready var bloom_sprite := $BloomSprite
 
 # Growth state
 var growth: float = 0.0
-var growth_stage: int = 0
+var growth_stage: int = 1   # start at 1 so seed shows immediately
 var grown: bool = false
 
 # Water balloon logic
@@ -21,36 +21,26 @@ var piggy_rate := 2.0
 var disco_timer := 0.0
 var disco_rate := 3.0
 
-# Tile positions inside this layer
-var tile_pos := Vector2i(0,0)  # Each flower uses only one tile
-
 func _ready():
-	if flower_data == null:
+	if not flower_data:
 		push_error("FlowerInstance has no flower_data assigned!")
 		return
 	add_to_group("flowers")
 	update_visuals()
 
-
-func harvest():
-	if grown:
-		Inventory.add_item(flower_data)
-		queue_free()  # Remove flower from scene
-
-
 func _process(delta):
-	# 🌱 Normal growth
+	# 🌱 Growth
 	if not grown:
 		growth += delta * flower_data.grow_speed
-		var stage := int((growth / 100.0) * 3.0)
+		var stage = int((growth / 100.0) * 3.0) + 1
 		if stage != growth_stage:
-			growth_stage = clamp(stage, 0, 3)
+			growth_stage = clamp(stage, 1, 3)
 			update_visuals()
 
 		if growth >= 100:
 			grow_to_full()
 
-	# 💧 Water balloon logic
+	# 💧 Water balloon
 	if is_filling:
 		water_fill += delta
 		if water_fill >= fill_time:
@@ -64,52 +54,32 @@ func _process(delta):
 	if flower_data.special_effect == "disco_bush" and grown:
 		process_disco_effect(delta)
 
-
 # ===============================
 # 🌿 Visuals — stem + bloom
 # ===============================
 func update_visuals():
-	stem_layer.clear()
-	bloom_layer.clear()
-
 	if not flower_data:
 		return
-
-	# Apply each tileset
-	if flower_data.stem_tileset:
-		stem_layer.tile_set = flower_data.stem_tileset
-	if flower_data.bloom_tileset:
-		bloom_layer.tile_set = flower_data.bloom_tileset
-
-	var stage_to_draw := growth_stage
-	if stage_to_draw == 0 and flower_data.stem_tile_ids.size() > 0:
-		stage_to_draw = 1  # show first stage for seeds
-
-	# Draw stem
-	if stage_to_draw > 0 and stage_to_draw <= flower_data.stem_tile_ids.size():
-		var stem_id = flower_data.stem_tile_ids[stage_to_draw - 1]
-		stem_layer.set_cell(tile_pos, stem_id)
-  
-
-	# Draw bloom (only when fully grown)
-	if growth_stage == flower_data.stem_tile_ids.size() and flower_data.bloom_tile_id >= 0:
-		bloom_layer.set_cell(tile_pos, flower_data.bloom_tile_id)
-
-	print("🌸 Drawing", flower_data.name)
-	print("Stem tileset:", stem_layer.tile_set)
-	print("Bloom tileset:", bloom_layer.tile_set)
-	print("Stem IDs:", flower_data.stem_tile_ids)
-	print("Bloom ID:", flower_data.bloom_tile_id)
+	#flower immediately starts growing
+	# Stem sprite
+	if growth_stage > 0 and growth_stage <= flower_data.stem_textures.size():
+		stem_sprite.texture = flower_data.stem_textures[growth_stage - 1]
+		stem_sprite.visible = true
+	else:
+		stem_sprite.visible = false
+	
+	# Bloom sprite
+	bloom_sprite.texture = flower_data.bloom_texture if growth_stage == 3 else null
+	bloom_sprite.visible = growth_stage == 3
 
 
-
-
+# Fully grown
 func grow_to_full():
 	grown = true
 	print("%s fully grown!" % flower_data.name)
+	update_visuals()
 	if flower_data.affects_neighbors:
 		apply_special_effect()
-
 
 # ===============================
 # Special effects
@@ -125,71 +95,62 @@ func apply_special_effect():
 		_:
 			pass
 
-
 # Piggy Bank
 func start_piggy_bank_effect():
 	set_process(true)
-	print(flower_data.name + " (Piggy Bank) started 💰")
+	print("%s (Piggy Bank) started 💰" % flower_data.name)
 
 func process_piggy_bank(delta):
 	piggy_timer += delta
 	if piggy_timer >= piggy_rate:
 		piggy_timer = 0.0
 		for neighbor in get_tree().get_nodes_in_group("flowers"):
-			if neighbor == self:
-				continue
+			if neighbor == self: continue
 			if position.distance_to(neighbor.position) < 96:
 				if neighbor.flower_data.sell_value > 1:
 					neighbor.flower_data.sell_value -= 1
 					flower_data.sell_value += 1
 					print("%s steals 1 coin from %s" % [flower_data.name, neighbor.flower_data.name])
 
-
 # Disco Bush
 func start_disco_effect():
 	set_process(true)
-	print(flower_data.name + " (Disco Bush) starts glowing ✨")
+	print("%s (Disco Bush) starts glowing ✨" % flower_data.name)
 
 func process_disco_effect(delta):
 	disco_timer += delta
 	if disco_timer >= disco_rate:
 		disco_timer = 0.0
 		for neighbor in get_tree().get_nodes_in_group("flowers"):
-			if neighbor == self:
-				continue
-			if position.distance_to(neighbor.position) < 96:
-				if neighbor.flower_data:
-					neighbor.flower_data.sell_value += 1
-					print("💡 %s boosts %s’s value!" % [flower_data.name, neighbor.flower_data.name])
-
+			if neighbor == self: continue
+			if position.distance_to(neighbor.position) < 96 and neighbor.flower_data:
+				neighbor.flower_data.sell_value += 1
+				print("💡 %s boosts %s’s value!" % [flower_data.name, neighbor.flower_data.name])
 
 # Water Balloon
 func start_filling():
 	is_filling = true
 	water_fill = 0.0
-	print(flower_data.name + " started filling 💧")
+	print("%s started filling 💧" % flower_data.name)
 
 func release_water():
 	is_filling = false
 	water_fill = 0.0
-	print(flower_data.name + " releases water 🌊")
+	print("%s releases water 🌊" % flower_data.name)
 	for neighbor in get_tree().get_nodes_in_group("flowers"):
 		if neighbor != self and position.distance_to(neighbor.position) < 128:
 			if neighbor.flower_data:
 				neighbor.boost_growth(2.0)
 
-
 # Weeds
 func spread_weeds():
 	for x_offset in range(-1,2):
 		for y_offset in range(-1,2):
-			if x_offset == 0 and y_offset == 0:
-				continue
+			if x_offset == 0 and y_offset == 0: continue
 			var neighbor_pos = position + Vector2(x_offset*64, y_offset*64)
 			var occupied := false
 			for other in get_tree().get_nodes_in_group("flowers"):
-				if other == self:
-					continue
+				if other == self: continue
 				if neighbor_pos.distance_to(other.position) < 32:
 					occupied = true
 					break
@@ -198,32 +159,28 @@ func spread_weeds():
 				new_flower.position = neighbor_pos
 				new_flower.flower_data = flower_data
 				get_parent().add_child(new_flower)
+				new_flower.update_visuals()
 				print("🌾 Weeds spread!")
-
 
 # Shade / Eat / Boost
 func shade_neighbors():
 	for neighbor in get_tree().get_nodes_in_group("flowers"):
-		if neighbor == self:
-			continue
-		if position.distance_to(neighbor.position) < 96:
-			if neighbor.flower_data:
-				neighbor.flower_data.grows_at_night = true
+		if neighbor == self: continue
+		if position.distance_to(neighbor.position) < 96 and neighbor.flower_data:
+			neighbor.flower_data.grows_at_night = true
 
 func eat_neighbors():
 	for neighbor in get_tree().get_nodes_in_group("flowers"):
-		if neighbor == self:
-			continue
+		if neighbor == self: continue
 		if position.distance_to(neighbor.position) < 64:
 			if neighbor.flower_data:
 				print("%s ate %s!" % [flower_data.name, neighbor.flower_data.name])
 			neighbor.queue_free()
 
-
 func boost_growth(multiplier: float) -> void:
 	var original_speed = flower_data.grow_speed
 	flower_data.grow_speed *= multiplier
-	print(flower_data.name + " growth boosted 🌿")
+	print("%s growth boosted 🌿" % flower_data.name)
 	await get_tree().create_timer(5.0).timeout
 	flower_data.grow_speed = original_speed
-	print(flower_data.name + " growth boost ended")
+	print("%s growth boost ended" % flower_data.name)

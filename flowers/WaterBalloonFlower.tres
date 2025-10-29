@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("1_2kcdv")
 name = "Water Balloon Flower"
+grow_speed = 45.0
 affects_neighbors = true
 special_effect = "water_neighbors"
 stem_textures = Array[Texture2D]([ExtResource("3_ikr7d"), ExtResource("4_ph6m7"), ExtResource("5_101sj")])

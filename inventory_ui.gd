@@ -16,6 +16,10 @@ func update_display():
 	items = Inventory.items
 	item_names = items.keys()
 
+	# 🩹 Clamp index so it never goes out of range
+	if current_index >= item_names.size():
+		current_index = max(0, item_names.size() - 1)
+
 	# Build formatted inventory list text
 	var display_text := ""
 	for i in range(item_names.size()):
@@ -30,11 +34,7 @@ func update_display():
 
 	# Enable BBCode so colors and bold work
 	list_label.bbcode_enabled = true
-	list_label.text = ""
-	list_label.text = ""  # Clear before setting again
-	list_label.text = display_text
-	list_label.text = ""  # Fallback for Godot 4.x — ensure redraw
-	list_label.text = display_text
+	list_label.text = display_text  # (no need to clear it multiple times)
 
 	# Update current selection label
 	if item_names.size() > 0:
@@ -42,6 +42,7 @@ func update_display():
 		selected_label.text = "Selected: " + selected_name
 	else:
 		selected_label.text = "Inventory empty"
+
 
 func _input(event):
 	if event.is_action_pressed("ui_left"):

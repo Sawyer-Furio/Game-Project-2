@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("1_i8wck")
 name = "Piggy Bank Flower"
+grow_speed = 45.0
 sell_value = 6
 affects_neighbors = true
 special_effect = "piggy_bank"

@@ -21,7 +21,7 @@ const TILE_SPROUT  = 3
 const TILE_GROWN   = 4
 
 # === Background Cycle Settings ===
-@export var day_length := 60  # seconds for a full day-night loop
+@export var day_length := 100  # seconds for a full day-night loop
 var elapsed_time := 0.0
 var bg_height := 0.0
 
@@ -77,6 +77,32 @@ func _unhandled_input(event):
 		print(mouse_pos)
 		handle_tile_interaction(tile_pos)
 		print(tile_pos)
+
+	# 👇 This line must be indented to match the first "if" above
+	if event.is_action_pressed("harvest_all"):
+		harvest_all()
+
+func harvest_all():
+	var harvested_count = 0
+
+	for tile_pos in crops.keys():
+		var crop = crops[tile_pos]
+
+		# Only harvest fully grown crops (stage 3)
+		if crop.has("flower") and crop["stage"] == 3:
+			crop["flower"].harvest()
+			crops.erase(tile_pos)
+			farm_tiles.set_cell(tile_pos, TILE_GRASS)
+			harvested_count += 1
+
+	if harvested_count > 0:
+		print("🌾 Harvested %d crops!" % harvested_count)
+	else:
+		print("❌ No crops ready to harvest.")
+
+	inventory_ui.update_display()
+
+
 
 
 # =====================================================

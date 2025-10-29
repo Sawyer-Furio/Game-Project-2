@@ -10,6 +10,7 @@
 script = ExtResource("1_ksx35")
 id = 6
 name = "Mushroom"
+grow_speed = 45.0
 sell_value = 9
 grows_at_night = true
 affects_neighbors = true

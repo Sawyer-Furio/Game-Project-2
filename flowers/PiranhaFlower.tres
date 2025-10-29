@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("1_pu1m2")
 name = "Piranha Flower"
+grow_speed = 45.0
 sell_value = 9
 affects_neighbors = true
 color = Color(0.061849646, 0.1496383, 0.09246067, 1)

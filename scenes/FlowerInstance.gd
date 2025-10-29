@@ -60,18 +60,25 @@ func _process(delta):
 func update_visuals():
 	if not flower_data:
 		return
-	#flower immediately starts growing
+
+	# Determine time of day (requires GameManager reference or global time)
+	var gm = get_parent()
+	var fraction := fmod(gm.elapsed_time / gm.day_length, 1.0)
+	var is_daytime := fraction < 0.5
+
 	# Stem sprite
 	if growth_stage > 0 and growth_stage <= flower_data.stem_textures.size():
 		stem_sprite.texture = flower_data.stem_textures[growth_stage - 1]
 		stem_sprite.visible = true
 	else:
 		stem_sprite.visible = false
-	
-	# Bloom sprite
-	bloom_sprite.texture = flower_data.bloom_texture if growth_stage == 3 else null
-	bloom_sprite.visible = growth_stage == 3
 
+	# Bloom sprite: only show if grown AND correct time
+	var bloom_visible := growth_stage == 3
+	if flower_data.grows_at_night and is_daytime:
+		bloom_visible = false
+	bloom_sprite.texture = flower_data.bloom_texture if bloom_visible else null
+	bloom_sprite.visible = bloom_visible
 
 # Fully grown
 func grow_to_full():
@@ -184,3 +191,30 @@ func boost_growth(multiplier: float) -> void:
 	await get_tree().create_timer(5.0).timeout
 	flower_data.grow_speed = original_speed
 	print("%s growth boost ended" % flower_data.name)
+
+# ===============================
+# 🌻 Harvesting
+# ===============================
+func can_harvest() -> bool:
+	return grown
+
+func harvest():
+	if not can_harvest():
+		print("%s isn’t ready to harvest yet!" % flower_data.name)
+		return
+
+	print("🌾 Harvested %s!" % flower_data.name)
+
+	# Optional: play animation, particle, etc.
+	queue_free()
+
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		if can_harvest():
+			harvest()
+
+
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	pass # Replace with function body.

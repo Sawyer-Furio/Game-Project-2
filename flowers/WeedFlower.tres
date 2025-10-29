@@ -9,6 +9,7 @@
 [resource]
 script = ExtResource("1_iuvi8")
 name = "Weed Flower"
+grow_speed = 300.0
 affects_neighbors = true
 special_effect = "spread_weeds"
 stem_textures = Array[Texture2D]([ExtResource("3_dlmwe"), ExtResource("4_qkntl"), ExtResource("5_ro3cm")])
